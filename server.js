@@ -13,6 +13,6 @@ app.post("/xuly",(req,res)=>{
 })
 
 
-app.listen(8000,()=>{
+app.listen(80,()=>{
     console.log("APp đang chạy trên port 8000");
 })
