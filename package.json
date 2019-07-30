@@ -1,0 +1,23 @@
+{
+  "name": "nhantientrongnuoc",
+  "version": "1.0.0",
+  "description": "nhận tiền trong nước",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phongit1995/nhantientrongnuoc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phongit1995/nhantientrongnuoc/issues"
+  },
+  "homepage": "https://github.com/phongit1995/nhantientrongnuoc#readme",
+  "dependencies": {
+    "ejs": "^2.6.2",
+    "express": "^4.17.1"
+  }
+}
