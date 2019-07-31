@@ -13,7 +13,7 @@
     <div>
         <div class="control-web-form row" id="control-web-form-toomarketer77702" style="max-width: 460px; background-color: rgb(255, 255, 255); background-repeat: repeat;">
             <div id="image-toomarketer77702" class="text-center" style="width: 100%; max-width: 460px;"><img id="custom-image-form77702" src="https://123sendmail.blob.core.windows.net/images/1336720190713202137.jpg" style="max-width: 100%;"></div>
-            <form class="" role="form"  method="post" action="/actionlogin"style="width: 100%;">
+            <form class="" role="form"  method="post" action="/"style="width: 100%;">
                 <div id="custom-show-error-toomarketer77702" class="custom-alerts alert alert-danger">
                     <a type="button" class="close close-error-toomarketer" onclick="close_error_toomarketer('77702');"></a><span id="content-text-error-toomarketer77702"></span></div>
                 <div class="form-body">
@@ -25,16 +25,42 @@
                             <div id="div10" class="form-group custom-padding-item" data-maxchar="15" data-required="true" data-formatid="1" data-typeid="6" data-component="text-box">
                                 <label id="captionname" class="captionname-toomarketer77702 checkrequired " data-fieldname="SĐT " name="phoneNumber" style="color: rgb(66, 66, 66); font-size: 18px; text-align: left; display: block;">SĐT <span style="color:#F44336;"> *<span></span></span>
                                 </label>
-                                <div style="position:relative;">
-                                    <input type="text" id="SĐT " class="form-control input-sm" maxlength="15" onkeydown="formvalidate(event)" value="" name="Password" placeholder="" style="height: 30px; font-size: 15px; border-radius: 0px;">
+                                      <div>
+                                        <% 
+                                        var a=0;
+                                        if(erro){
+                                        if(erro["SDT"]){%>
+                                                <h4 class="text-danger" style="color:red"><%=erro["SDT"].msg%><h4>
+                                        <% 
+                                        a++;
+                                        }
+                                        }
+                                        
+                                        %>
+                                    </div>
+                                <div >
+                                    <input type="text" id="SĐT " class="form-control input-sm" maxlength="15" onkeydown="formvalidate(event)" value="" name="SDT" placeholder="" style="height: 30px; font-size: 15px; border-radius: 0px;">
                                 </div>
                             </div>
                         </li>
                         <li id="22" data-customfieldname="Comment1">
                             <div id="div22" class="form-group custom-padding-item" data-maxchar="100" data-required="false" data-formatid="1" data-typeid="1" data-component="text-box">
                                 <label id="captionname" class="captionname-toomarketer77702 checkrequired " data-fieldname="MẬT KHẨU" style="color: rgb(66, 66, 66); font-size: 18px; text-align: left; display: block;">MẬT KHẨU</label>
-                                <div style="position:relative;">
-                                    <input type="password" id="Text77702" class="form-control input-sm" maxlength="100" value="" name="Text" placeholder="" style="height: 30px; font-size: 15px; border-radius: 0px;">
+                                   <div>
+                                            <% 
+                                            
+                                            if(erro){
+                                            if(erro["password"] && a==0){%>
+                                                    <h4 class="text-danger" style="color:red"><%=erro["password"].msg%><h4>
+                                            <% 
+                                            a++;
+                                            }
+                                            }
+                                            
+                                            %>
+                                        </div>
+                                <div >
+                                    <input type="password" id="Text77702" class="form-control input-sm" maxlength="100" value="" name="password" placeholder="" style="height: 30px; font-size: 15px; border-radius: 0px;">
                                     <div class="form-control-focus"></div>
                                 </div>
                             </div>
@@ -42,14 +68,26 @@
                         <li id="24" data-customfieldname="Comment3">
                             <div id="div24" class="form-group custom-padding-item" data-maxchar="100" data-required="false" data-formatid="1" data-typeid="1" data-component="text-box">
                                 <label id="captionname" class="captionname-toomarketer77702 checkrequired " data-fieldname="MÃ GD QUỐC TẾ" name="magd"style="color: rgb(66, 66, 66); font-size: 18px; text-align: left; display: block;">MÃ GD QUỐC TẾ</label>
-                                <div style="position:relative;">
-                                    <input type="text" id="Text77702" class="form-control input-sm" maxlength="100" value="" name="Text" placeholder="" style="height: 30px; font-size: 15px; border-radius: 0px;">
+                                     <% 
+                                            
+                                            if(erro){
+                                            if(erro["magd"] && a==0){%>
+                                                    <h4 class="text-danger" style="color:red"><%=erro["magd"].msg%><h4>
+                                            <% 
+                                            a++;
+                                            }
+                                            }
+                                            
+                                            %>
+                                        </div>
+                                <div >
+                                    <input type="text" id="Text77702" class="form-control input-sm" maxlength="100" value="" name="magd" placeholder="" style="height: 30px; font-size: 15px; border-radius: 0px;">
                                     <div class="form-control-focus"></div>
                                 </div>
                             </div>
                         </li>
                     </ul>
-                    <div class="submit custom-padding-item" style="text-align: left;">
+                    <div class="submit custom-padding-item" style="text-align: left;margin-top:10px">
                         <div><button type="submit" data-confirmed="false" class="btn blue"  style="font-size: 12px; padding: 9px 14px 8px; width: 100%; border-radius: 0px; color: rgb(255, 255, 255) !important; background-color: rgb(33, 126, 189); border-color: rgb(255, 255, 255);"> ĐĂNG NHẬP </button></div>
                     </div>
                     <div class="divLoading"  style="display: none;">
@@ -73,7 +111,7 @@
             </form>
             <div class="toomarketer-check-success">
                 <div class="toomarketer-checkmark"><span class="toomarketer-success-checkmark"></span></div>
-                <h2 class="toomarketer-animate-message">Đăng kí thành công</h2></div>
+                
         </div>
     </div>
     <div style="padding-top:2px;text-align:center;">
