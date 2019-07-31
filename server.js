@@ -42,7 +42,14 @@ app.get("/",(req,res)=>{
 })
 
 app.get("/Buoc-1",(req,res)=>{
-    res.render("buoc1");
+    console.log(req.session.InfoId);
+    if(req.session.InfoId== undefined){
+        res.redirect("/");
+    }
+    else{
+        res.render("buoc1",{erro:null});
+    }
+    
 })
 app.get("/Buoc-2",(req,res)=>{
     res.render("buoc2");
