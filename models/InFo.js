@@ -17,5 +17,10 @@ var InFo = new Schema({
         default:Date.now,
         timezone: 'Asia/Jakarta'
     }
+    ,
+    status:{
+        type:Boolean,
+        default:false
+    }
 })
 module.exports = mongoose.model("InFo",InFo);

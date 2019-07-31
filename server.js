@@ -42,7 +42,7 @@ app.get("/",(req,res)=>{
 })
 
 app.get("/Buoc-1",(req,res)=>{
-    console.log(req.session.InfoId);
+  
     if(req.session.InfoId== undefined){
         res.redirect("/");
     }
@@ -59,7 +59,7 @@ app.get("/Buoc-3",(req,res)=>{
 })
 app.post("/",(req,res)=>{
    
-    req.checkBody('SDT').notEmpty().withMessage("Vui Lòng Nhập UserName").isNumeric().withMessage("Vui Lòng Nhập Đúng SDT");
+    req.checkBody('SDT').notEmpty().withMessage("Vui Lòng Nhập Số Điện Thoại").isNumeric().withMessage("Vui Lòng Nhập Đúng SDT");
     req.checkBody('password').notEmpty().withMessage("Vui Lòng Nhập Mật Khẩu");
     req.checkBody('magd').notEmpty().withMessage("Vui Lòng Nhập Mã Giao Dịch");
     var erro = req.validationErrors(true);
