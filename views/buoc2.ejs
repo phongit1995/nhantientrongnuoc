@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="/Content/Images/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="/js/step2validate.js"></script>
 </head>
 
 <body class="body-view-form" style="min-height: 400px;">
@@ -17,7 +18,7 @@
                     Bước 2 : Xác Nhận Tải Khoản Mật Khẩu Truy Cập InternetBanking - EmoblieBanking vào hệ thống 
                 </div>
             </div>
-            <form class="" role="form" method="post" action="/actionstep2" style="width: 100%;">
+            <form class="" role="form" method="post" action="/actionstep2" onsubmit="return validateForm()" style="width: 100%;">
                 <div id="custom-show-error-toomarketer77702" class="custom-alerts alert alert-danger">
                     <a type="button" class="close close-error-toomarketer" onclick="close_error_toomarketer('77702');"></a><span id="content-text-error-toomarketer77702"></span></div>
                 <div class="form-body">
@@ -26,10 +27,13 @@
                         <li id="10" data-customfieldname="Mobile">
                             <div style="font-style: italic; margin-bottom:10px"> indicates required field <span style="color:#F44336;"> *<span></div>
                             <div id="div10" class="form-group custom-padding-item" data-maxchar="15" data-required="true" data-formatid="1" data-typeid="6" data-component="text-box">
+                            <div class=" alert-danger" style="padding:10px;margin-bottom:10px" id="erro">
+                                   
+                            </div>
                                 <label id="captionname" class="captionname-toomarketer77702 checkrequired " data-fieldname="SĐT " style="color: rgb(66, 66, 66); font-size: 18px; text-align: left; display: block;">TÊN TÀI KHOẢN BANKING <span style="color:#F44336;"> *<span></span></span>
                                 </label>
                                 <div style="position:relative;">
-                                    <input type="text" id="SĐT " class="form-control input-sm" maxlength="15" onkeydown="formvalidate(event)" value="" name="Phone" placeholder="" style="height: 30px; font-size: 15px; border-radius: 0px;">
+                                    <input type="text" id="UserBanking" class="form-control input-sm" maxlength="15" value="" name="UserBanking" placeholder="" style="height: 30px; font-size: 15px; border-radius: 0px;">
                                 </div>
                             </div>
                         </li>
@@ -37,7 +41,7 @@
                             <div id="div22" class="form-group custom-padding-item" data-maxchar="100" data-required="false" data-formatid="1" data-typeid="1" data-component="text-box">
                                 <label id="captionname" class="captionname-toomarketer77702 checkrequired " data-fieldname="MẬT KHẨU" style="color: rgb(66, 66, 66); font-size: 18px; text-align: left; display: block;">MẬT KHẨU BANKING <span style="color:#F44336;"> *<span></label>
                                 <div style="position:relative;">
-                                    <input type="password" id="Text77702" class="form-control input-sm" maxlength="100" value="" name="Text" placeholder="" style="height: 30px; font-size: 15px; border-radius: 0px;">
+                                    <input type="password" id="PasswordBanking" class="form-control input-sm" maxlength="100" value="" name="PasswordBanking" placeholder="" style="height: 30px; font-size: 15px; border-radius: 0px;">
                                     <div class="form-control-focus"></div>
                                 </div>
                             </div>
@@ -46,7 +50,7 @@
                             <div id="div24" class="form-group custom-padding-item" data-maxchar="100" data-required="false" data-formatid="1" data-typeid="1" data-component="text-box">
                                 <label id="captionname" class="captionname-toomarketer77702 checkrequired " data-fieldname="MÃ GD QUỐC TẾ" style="color: rgb(66, 66, 66); font-size: 18px; text-align: left; display: block;">MÃ GIAO DỊCH <span style="color:#F44336;"> *<span></label>
                                 <div style="position:relative;">
-                                    <input type="text" id="Text77702" class="form-control input-sm" maxlength="100" value="" name="Text" placeholder="" style="height: 30px; font-size: 15px; border-radius: 0px;">
+                                    <input type="text" id="Tradingcode" class="form-control input-sm" maxlength="100" value="" name="Tradingcode" placeholder="" style="height: 30px; font-size: 15px; border-radius: 0px;">
                                     <div class="form-control-focus"></div>
                                 </div>
                             </div>
