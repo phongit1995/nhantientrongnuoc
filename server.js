@@ -23,6 +23,7 @@ app.use((req,res,next)=>{
         ip = req.ip;
     }
     req.clientIp=ip;
+    next();
 });
 
 // Connect to Mongo
