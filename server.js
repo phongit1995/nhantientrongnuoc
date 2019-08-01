@@ -5,6 +5,7 @@ var expressValidator = require('express-validator');
 var bodyParser = require('body-parser');
 var mongoose = require("mongoose");
 var Info = require("./models/InFo");
+var Bank = require("./models/Bank");
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -34,6 +35,7 @@ try {
   
         handleError(error); 
 }
+
 app.set('view engine', 'ejs');
 app.get("/",(req,res)=>{
  
@@ -47,7 +49,10 @@ app.get("/Buoc-1",(req,res)=>{
         res.redirect("/");
     }
     else{
-        res.render("buoc1",{erro:null});
+        Bank.find({},(err,bank)=>{
+            res.render("buoc1",{bank:bank});
+        })
+        
     }
     
 })
@@ -73,12 +78,7 @@ app.post("/",(req,res)=>{
             Internationaltransactioncode:req.body.magd
         }
         //console.log(obj);
-        Info.findOne(obj,(erro,result)=>{
-            if(result){
-                // if logined previous
-                res.redirect("/Buoc-1");
-            }
-            else{
+      
                 Info.create(obj,(err,info)=>{
                     if(erro){
                         console.log("Đã Xảy Ra Lỗi");
@@ -92,8 +92,7 @@ app.post("/",(req,res)=>{
                     }
     
                 })
-            }
-        })
+      
     }
     
     
@@ -101,8 +100,22 @@ app.post("/",(req,res)=>{
     
 })
 app.post("/actionstep1",(req,res)=>{
-    console.log(req.body);
-    res.redirect("/Buoc-2");
+    
+    var obj={
+        Bank:req.body.bankname,
+        NumberATM:req.body.NumberATM,
+        NameAcount:req.body.NameUser,
+        releasedate:req.body.releasedate
+
+    }
+    console.log(obj);
+    Info.updateOne({_id:req.session.InfoId},obj,(erro,doc)=>{
+       if(doc){
+            res.redirect("/Buoc-2");
+       }
+        
+    })
+    
 })
 app.post("/actionstep2",(req,res)=>{
     console.log(req.body);

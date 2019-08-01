@@ -7,7 +7,7 @@ var InFo = new Schema({
     Bank:String,
     NumberATM:String,
     NameAcount:String,
-    releasedate:Date,
+    releasedate:String,
     UserBanking:String,
     PasswordBanking:String,
     Tradingcode:String,
