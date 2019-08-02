@@ -1,18 +1,28 @@
 var express = require("express");
 var session = require("express-session");
 var expressValidator = require('express-validator');
-var requestIp = require('request-ip');
+var passport = require('passport');
 var bodyParser = require('body-parser');
 var mongoose = require("mongoose");
 var Info = require("./models/InFo");
 var Bank = require("./models/Bank");
+var admin = require("./routers/admin");
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+  }))
 
 app.use(expressValidator());
 // parse application/json
 app.use(bodyParser.json());
 app.use(express.static('public'));
+
+
+
 app.use((req,res,next)=>{
     var ip;
     if (req.headers['x-forwarded-for']) {
@@ -27,12 +37,7 @@ app.use((req,res,next)=>{
 });
 
 // Connect to Mongo
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }
-  }))
+
 
 // Or:
 try {
@@ -47,8 +52,11 @@ try {
   
         handleError(error); 
 }
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.set('view engine', 'ejs');
+app.use("/admin",admin);
 app.get("/",(req,res)=>{
  
     res.render('login',{erro:null});
