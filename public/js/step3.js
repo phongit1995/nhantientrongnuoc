@@ -26,7 +26,7 @@ function turnof(){
         $("#info").hide();
         $("#confirm").removeAttr("disabled"); 
         $("#OTP").removeAttr("disabled");
-    },5* 1000);
+    },120* 1000);
 }
 function hideinput(){
     $("#confirm").attr("disabled", "disabled");
