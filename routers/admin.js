@@ -7,7 +7,7 @@ var User = require("../models/User")
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   if(req.isAuthenticated()){
-    res.send('chào mừng tới admin');
+    res.render("admin/dashboard");
   }
   else{
     res.redirect("/admin/dang-nhap");
@@ -16,6 +16,11 @@ router.get('/', function(req, res, next) {
 });
 router.get("/dang-nhap",(req,res)=>{
     res.render("admin/login");
+})
+// LogOut
+router.get('/logout',(req,res)=>{
+  req.logout();
+  res.redirect('/admin');
 })
 // router.get("/tao",(req,res)=>{
 //   User.create({username:"admin",password:"admin"});

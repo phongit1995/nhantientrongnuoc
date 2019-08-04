@@ -30,7 +30,6 @@ function turnof(){
 }
 function hideinput(){
     $("#confirm").attr("disabled", "disabled");
-    $("#OTP").attr("disabled", "disabled");
 }
 function validateForm() {
     var OTP= $("#OTP").val();
