@@ -40,10 +40,6 @@
                      <h2 class="no-margin-bottom">Danh Sách Thông Tin Khách Hàng</h2>
                   </div>
                </header>
-                <div style="padding:10px 0 0 10px">
-                  <a name="" id="" class="btn btn-primary" href="/admin/da-xem" role="button">Danh Sách Khách Hàng Đã Xem</a>
-              
-               </div>
                <!-- Dashboard Counts Section-->
                <section class="dashboard-counts no-padding-bottom" style="padding-top:10px">
                   <div class="container-fluid">
@@ -84,7 +80,7 @@
                                     <td ><%=data.OTP%></td>
                                     <td  style="width:150px"><%=moment(data.Createat).format("DD-MM-YYYY HH:mm:ss")%></td>
                                     <td ><%=data.IP.replace('::ffff:', '')%></td>
-                                    <td>  <a href="/admin/khach-hang/hide/<%=data._id%>" id="" class="btn btn-primary" role="button">Ẩn</a>
+                                    <td>  <a href="/admin/khach-hang/xoa/<%=data._id%>" id="" class="btn btn-warning" role="button">Xóa</a>
                                  </tr>
                              <% })
                            %>

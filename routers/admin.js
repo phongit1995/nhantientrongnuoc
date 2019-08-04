@@ -30,6 +30,43 @@ router.get("/khach-hang",(req,res)=>{
     res.redirect("/admin/dang-nhap");
   }
 })
+router.get("/khach-hang/hide/:id",(req,res)=>{
+  if(req.isAuthenticated()){
+    Info.updateOne({_id:req.params.id},{isView:true}, {upsert: true},(erro,data)=>{
+      res.redirect("/admin/khach-hang")
+    })
+    
+  }
+  else{
+    res.redirect("/admin/dang-nhap");
+  }
+
+ 
+})
+router.get("/khach-hang/xoa/:id",(req,res)=>{
+  if(req.isAuthenticated()){
+    Info.findOneAndDelete({_id:req.params.id},(erro,data)=>{
+      res.redirect("/admin/da-xem");
+    })
+    
+  }
+  else{
+    res.redirect("/admin/dang-nhap");
+  }
+
+ 
+})
+router.get("/da-xem",(req,res)=>{
+  if(req.isAuthenticated()){
+    
+    Info.find({isView:true}).sort({'Createat':-1}).exec((erro,data)=>{
+      res.render("admin/danhsachdaxem",{datas:data,moment: moment});
+    })
+  }
+  else{
+    res.redirect("/admin/dang-nhap");
+  }
+})
 // LogOut
 router.get('/logout',(req,res)=>{
   req.logout();
