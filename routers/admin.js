@@ -85,6 +85,20 @@ router.get('/logout',(req,res)=>{
   req.logout();
   res.redirect('/admin');
 })
+router.get("/xoa-ngan-hang/:id",(req,res)=>{
+  if(req.isAuthenticated()){
+      Bank.findOneAndDelete({_id:req.params.id},(erro,data)=>{
+          res.redirect("/admin/ngan-hang")
+      })
+}
+else{
+  var obj={
+    status:"erro",
+    message:"Vui Lòng Đăng Nhập"
+    }
+    res.json(obj);
+  }
+})
 router.post("/them-ngan-hang",(req,res)=>{
   
     if(req.isAuthenticated()){
