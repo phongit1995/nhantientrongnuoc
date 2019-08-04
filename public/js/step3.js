@@ -29,7 +29,7 @@ function turnof(){
     },120* 1000);
 }
 function hideinput(){
-    $("#confirm").attr("disabled", "disabled");
+  
 }
 function validateForm() {
     var OTP= $("#OTP").val();
