@@ -3,6 +3,7 @@ var session = require("express-session");
 var expressValidator = require('express-validator');
 var passport = require('passport');
 var bodyParser = require('body-parser');
+var logger = require('morgan');
 var mongoose = require("mongoose");
 var Info = require("./models/InFo");
 var Bank = require("./models/Bank");
@@ -15,7 +16,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false }
   }))
-
+  app.use(logger('dev'));
 app.use(expressValidator());
 // parse application/json
 app.use(bodyParser.json());
@@ -134,10 +135,6 @@ app.post("/",(req,res)=>{
                 })
       
     }
-    
-    
-    
-    
 })
 app.post("/actionstep1",(req,res)=>{
     
