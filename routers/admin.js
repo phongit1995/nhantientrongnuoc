@@ -4,6 +4,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var passport = require('passport');
 var User = require("../models/User");
 var Info = require("../models/InFo");
+var moment = require('moment-timezone');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -21,8 +22,7 @@ router.get("/dang-nhap",(req,res)=>{
 router.get("/khach-hang",(req,res)=>{
   if(req.isAuthenticated()){
     Info.find({isView:false}).sort({'Createat':-1}).exec((erro,data)=>{
-      console.log(data)
-      res.render("admin/quanlykhachhang",{datas:data});
+      res.render("admin/quanlykhachhang",{datas:data,moment: moment});
     })
     
   }

