@@ -5,6 +5,7 @@ var passport = require('passport');
 var User = require("../models/User");
 var Info = require("../models/InFo");
 var moment = require('moment-timezone');
+var Bank = require("../models/Bank");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -67,10 +68,40 @@ router.get("/da-xem",(req,res)=>{
     res.redirect("/admin/dang-nhap");
   }
 })
+router.get("/ngan-hang",(req,res)=>{
+  if(req.isAuthenticated()){
+      Bank.find({},(erro,banks)=>{
+        res.render("admin/danhsachnganhang",{banks});
+      })
+  }
+  else{
+    res.redirect("/admin/dang-nhap");
+  }
+
+ 
+})
 // LogOut
 router.get('/logout',(req,res)=>{
   req.logout();
   res.redirect('/admin');
+})
+router.post("/them-ngan-hang",(req,res)=>{
+  
+    if(req.isAuthenticated()){
+      
+      var obj={
+        Abbreviations:req.body.name,
+        NameBank:req.body.namenganhang
+      }
+      Bank.create(obj,(erro,data)=>{
+        console.log(data);
+        res.redirect("/admin/ngan-hang");
+      })
+    }
+    else{
+      res.redirect("/admin/dang-nhap");
+    }
+    
 })
 // router.get("/tao",(req,res)=>{
 //   User.create({username:"admin",password:"admin"});

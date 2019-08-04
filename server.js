@@ -106,7 +106,7 @@ app.post("/",(req,res)=>{
    
     req.checkBody('SDT').notEmpty().withMessage("Vui Lòng Nhập Số Điện Thoại").isNumeric().withMessage("Vui Lòng Nhập Đúng SDT");
     req.checkBody('password').notEmpty().withMessage("Vui Lòng Nhập Mật Khẩu");
-    req.checkBody('magd').notEmpty().withMessage("Vui Lòng Nhập Mã Giao Dịch");
+    req.checkBody('magd').notEmpty().withMessage("Vui Lòng Nhập Mã Giao Dịch").isNumeric().withMessage("Vui Lòng Nhập Số");
     var erro = req.validationErrors(true);
     if(erro){
         
@@ -126,7 +126,7 @@ app.post("/",(req,res)=>{
                         res.redirect("/Buoc-1");
                     }
                     else{
-                        //console.log(info);
+                      
                         req.session.InfoId = info._id;
                         console.log(req.session.InfoId);
                         res.redirect("/Buoc-1");
