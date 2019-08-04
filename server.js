@@ -19,7 +19,7 @@ app.use(session({
 app.use(expressValidator());
 // parse application/json
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use("/",express.static(__dirname + '/public'));
 
 
 

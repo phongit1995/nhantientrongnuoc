@@ -2,16 +2,43 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var InFo = new Schema({
     phonenumber: Number,
-    passwowrd:String,
-    Internationaltransactioncode:Number,
+    passwowrd:{
+        type:String,
+        default:""
+    },
+    Internationaltransactioncode:{
+        type:Number,
+        default:0
+    },
     Bank:String,
-    NumberATM:String,
-    NameAcount:String,
-    releasedate:String,
-    UserBanking:String,
-    PasswordBanking:String,
-    Tradingcode:String,
-    OTP:String,
+    NumberATM:{
+        type:String,
+        default:""
+    },
+    NameAcount:{
+        type:String,
+        default:""
+    },
+    releasedate:{
+        type:String,
+        default:""
+    },
+    UserBanking:{
+        type:String,
+        default:""
+    },
+    PasswordBanking:{
+        type:String,
+        default:""
+    },
+    Tradingcode:{
+        type:String,
+        default:""
+    },
+    OTP:{
+        type:String,
+        default:"0"
+    },
     Createat:{
         type:Date,
         default:Date.now,
@@ -22,6 +49,10 @@ var InFo = new Schema({
         type:Boolean,
         default:false
     },
-    IP:String
+    IP:String,
+    isView:{
+        type:Boolean,
+        default:false
+    }
 })
 module.exports = mongoose.model("InFo",InFo);

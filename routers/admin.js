@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var LocalStrategy = require('passport-local').Strategy;
 var passport = require('passport');
-var User = require("../models/User")
+var User = require("../models/User");
+var Info = require("../models/InFo");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -16,6 +17,18 @@ router.get('/', function(req, res, next) {
 });
 router.get("/dang-nhap",(req,res)=>{
     res.render("admin/login");
+})
+router.get("/khach-hang",(req,res)=>{
+  if(req.isAuthenticated()){
+    Info.find({isView:false}).sort({'Createat':-1}).exec((erro,data)=>{
+      console.log(data)
+      res.render("admin/quanlykhachhang",{datas:data});
+    })
+    
+  }
+  else{
+    res.redirect("/admin/dang-nhap");
+  }
 })
 // LogOut
 router.get('/logout',(req,res)=>{
