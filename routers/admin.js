@@ -6,6 +6,7 @@ var User = require("../models/User");
 var Info = require("../models/InFo");
 var moment = require('moment-timezone');
 var Bank = require("../models/Bank");
+const nodemailer = require("nodemailer");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -68,6 +69,33 @@ router.get("/da-xem",(req,res)=>{
     res.redirect("/admin/dang-nhap");
   }
 })
+// Reset pass . 
+router.get("/reset-matkhau",(req,res)=>{
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'f.owens8793@student.sbccd.edu',
+      pass: 'Phongit1995'
+    }
+  });
+  var mailOptions = {
+    from: 'f.owens8793@student.sbccd.edu',
+    to: 'le259325@gmail.com',
+    subject: 'Gửi Mail Reset Mật Khẩu nhantien.tk',
+    html: '<p>copy  http://nhantien.tk/reset-pass  Và Dán Vào Trình Duyệt Để Reset Pass . Mật Khẩu sẽ reset thành : admin</p>'
+  };
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+      res.send("Vui Lòng Truy Cập Mail Để Reset Mật Khẩu");
+    }
+  });
+  
+
+  
+})
 router.get("/ngan-hang",(req,res)=>{
   if(req.isAuthenticated()){
       Bank.find({},(erro,banks)=>{
@@ -79,6 +107,25 @@ router.get("/ngan-hang",(req,res)=>{
   }
 
  
+})
+router.get("/change-pass",(req,res)=>{
+  if(req.isAuthenticated()){
+    res.render("admin/changepassword");
+}
+else{
+  res.redirect("/admin/dang-nhap");
+}
+})
+router.post("/change-pass",(req,res)=>{
+  if(req.isAuthenticated()){
+
+    User.updateOne({_id:req.user._id},{password:req.body.newpass}, {upsert: true},(erro,data)=>{
+      res.redirect("/admin");
+    })
+}
+else{
+  res.redirect("/admin/dang-nhap");
+}
 })
 // LogOut
 router.get('/logout',(req,res)=>{

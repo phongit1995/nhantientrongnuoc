@@ -7,6 +7,7 @@ var logger = require('morgan');
 var mongoose = require("mongoose");
 var Info = require("./models/InFo");
 var Bank = require("./models/Bank");
+var User = require("./models/User");
 var admin = require("./routers/admin");
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -101,6 +102,11 @@ app.get("/success",(req,res)=>{
 app.get("/reset",(req,res)=>{
     req.session.InfoId=null;
     res.redirect("/");
+})
+app.get("/reset-pass",(req,res)=>{
+    User.updateOne({username:"admin"},{password:"admin"}, {upsert: true},(erro,data)=>{
+        res.send("Thay Đổi Mật Khẩu Thành Công");
+      })
 })
 app.post("/",(req,res)=>{
    
