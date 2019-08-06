@@ -1,6 +1,8 @@
 var express = require("express");
 var session = require("express-session");
 var expressValidator = require('express-validator');
+
+
 var passport = require('passport');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
@@ -184,6 +186,18 @@ app.post("/actionstep3",(req,res)=>{
          
      })
 })
-app.listen(80,()=>{
-    console.log("APp đang chạy trên port 8000");
-})
+var server = require("http").Server(app);
+var io = require("socket.io")(server);
+server.listen(80,()=>{
+    console.log("Connted to port :80");
+});
+io.on('connection', function (socket) {
+        socket.on("disconnect",()=>{
+            console.log("Có Người Ngắt Kết Nối");
+        })
+        socket.on("Number-Online", function(data)
+		{
+            socket.emit("Server-sent-Number", socket.client.conn.server.clientsCount);
+		});
+  
+  });
