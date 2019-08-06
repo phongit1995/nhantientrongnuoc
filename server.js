@@ -192,9 +192,7 @@ server.listen(80,()=>{
     console.log("Connted to port :80");
 });
 io.on('connection', function (socket) {
-        socket.on("disconnect",()=>{
-            console.log("Có Người Ngắt Kết Nối");
-        })
+       
         socket.on("Number-Online", function(data)
 		{
             socket.emit("Server-sent-Number", socket.client.conn.server.clientsCount);

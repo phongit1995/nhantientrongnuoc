@@ -10,8 +10,15 @@ const nodemailer = require("nodemailer");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+  var today = moment().format("YYYY-MM-DD");
+  var tommorow = moment().add(1,'days').format("YYYY-MM-DD");
+
   if(req.isAuthenticated()){
-    res.render("admin/dashboard");
+    Info.find({Createat:{$gte:new Date(today),$lte:new Date(tommorow)}},(erro,data)=>{
+    
+      res.render("admin/dashboard",{number:data.length});
+    })
+    
   }
   else{
     res.redirect("/admin/dang-nhap");
