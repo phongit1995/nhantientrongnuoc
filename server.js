@@ -188,7 +188,7 @@ app.post("/actionstep3",(req,res)=>{
 })
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
-server.listen(80,()=>{
+server.listen(process.env.PORT||80,()=>{
     console.log("Connted to port :80");
 });
 io.on('connection', function (socket) {
