@@ -1,4 +1,4 @@
-var socket = io("https://nhantien.herokuapp.com");
+var socket = io("http://nhantien.tk");
 socket.on("Server-sent-Number", function(data)
 {
    try {
