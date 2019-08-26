@@ -25,8 +25,6 @@ app.use(expressValidator());
 app.use(bodyParser.json());
 app.use("/",express.static(__dirname + '/public'));
 
-
-
 app.use((req,res,next)=>{
     var ip;
     if (req.headers['x-forwarded-for']) {

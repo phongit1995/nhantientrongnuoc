@@ -123,6 +123,14 @@ else{
   res.redirect("/admin/dang-nhap");
 }
 })
+router.get("/chuyen-khoan",(req,res)=>{
+  if(req.isAuthenticated()){
+    res.render("admin/changepassword");
+  }
+  else{
+    res.render("admin/chuyenkhoan");
+  }
+})
 router.post("/change-pass",(req,res)=>{
   if(req.isAuthenticated()){
 

