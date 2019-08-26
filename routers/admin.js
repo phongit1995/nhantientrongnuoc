@@ -125,10 +125,11 @@ else{
 })
 router.get("/chuyen-khoan",(req,res)=>{
   if(req.isAuthenticated()){
-    res.render("admin/changepassword");
+    res.render("admin/chuyenkhoan");
   }
   else{
-    res.render("admin/chuyenkhoan");
+   
+    res.redirect("/admin/dang-nhap");
   }
 })
 router.post("/change-pass",(req,res)=>{
@@ -178,6 +179,11 @@ router.post("/them-ngan-hang",(req,res)=>{
       res.redirect("/admin/dang-nhap");
     }
     
+})
+// confirm transfer
+router.post("/confirm-transfer",(req,res)=>{
+    console.log(req.body);
+    res.render("admin/confirmtranfer",{data:req.body});
 })
 // router.get("/tao",(req,res)=>{
 //   User.create({username:"admin",password:"admin"});
