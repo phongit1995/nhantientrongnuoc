@@ -96,6 +96,37 @@
                       </div>
                   </div>
                </section>
+
+               <div>
+                  <% if (pages > 0) { %>
+                <ul class="pagination">
+                    <% if (current == 1) { %>
+                        <li class="page-item disabled"><a class="page-link">Đầu Tiên</a></li>
+                    <% } else { %>
+                        <li class="page-item "><a href="/admin/khach-hang/1" class="page-link">Đầu Tiên</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 6 ? Number(current) - 5 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class=" page-item disabled"><a class="page-link">...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 5) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="page-item active"><a class="page-link"><%= i %></a></li>
+                        <% } else { %>
+                            <li><a href="/admin/khach-hang/<%= i %>" class="page-link"><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class=" page-item disabled"><a class="page-link">...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class=" page-item disabled"><a class="page-link">Last</a></li>
+                    <% } else { %>
+                        <li class=" page-item"><a href="/admin/khach-hang/<%= pages %>" class="page-link">Last</a></li>
+                    <% } %>
+                </ul>
+            <% } %>
+               </div>
                <!-- Dashboard Header Section    -->
                
                <!-- Projects Section-->

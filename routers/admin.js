@@ -7,6 +7,7 @@ var Info = require("../models/InFo");
 var moment = require('moment-timezone');
 var Bank = require("../models/Bank");
 const nodemailer = require("nodemailer");
+let skipNumber=9;
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -28,16 +29,21 @@ router.get('/', function(req, res, next) {
 router.get("/dang-nhap",(req,res)=>{
     res.render("admin/login");
 })
-router.get("/khach-hang",(req,res)=>{
+router.get("/khach-hang(/:page)?", async(req,res)=>{
+  let page = req.params.page||1 ;
+  let totalNumber = await Info.find({isView:false}).sort({'Createat':-1}).count();
   if(req.isAuthenticated()){
-    Info.find({isView:false}).sort({'Createat':-1}).exec((erro,data)=>{
-      res.render("admin/quanlykhachhang",{datas:data,moment: moment});
+    Info.find({isView:false}).sort({'Createat':-1}).skip(skipNumber*page - skipNumber).limit(skipNumber).exec((erro,data)=>{
+      
+      res.render("admin/quanlykhachhang",{datas:data,moment: moment,current:page,pages:Math.ceil(totalNumber/skipNumber)});
     })
-    
   }
   else{
     res.redirect("/admin/dang-nhap");
   }
+})
+router.get("/product(/:page)?",(req,res)=>{
+  console.log(req.params);
 })
 router.get("/khach-hang/hide/:id",(req,res)=>{
   if(req.isAuthenticated()){
